@@ -55,26 +55,26 @@
     }
     console.log(temp_age);
 
-    // 2. _filter, _map으로 리팩토링
-    function _filter(list, priedi) {
-        var new_list = [];
-
-        for(var i=0; i < list.length ;i++){
-            if(priedi(list[i])){
-                new_list.push(list[i]);
-            }
-        }
-        return new_list;
-    }
-
-    function _map(list, mapper ){
-        var new_list = [];
-        for(var i=0; i < list.length ;i++) {
-            new_list.push(mapper(list[i]));
-        }
-
-        return new_list
-    }
+    // 2. _filter, _map으로 리팩토링 => js 로 이동 및 _each로 리팩터링 처리 함.
+    // function _filter(list, priedi) {
+    //     var new_list = [];
+    //
+    //     for(var i=0; i < list.length ;i++){
+    //         if(priedi(list[i])){
+    //             new_list.push(list[i]);
+    //         }
+    //     }
+    //     return new_list;
+    // }
+    //
+    // function _map(list, mapper ){
+    //     var new_list = [];
+    //     for(var i=0; i < list.length ;i++) {
+    //         new_list.push(mapper(list[i]));
+    //     }
+    //
+    //     return new_list
+    // }
 
     console.log('use _filter')
 
