@@ -116,7 +116,84 @@
     // 1. array_like, arguments, document.querySelectorAll
     // 3. 내부 다형성
     // 1. predi, iter, mapper
-    // 3. 커링
+    // => js 로 구현 함.
+    
+    
+    // 3. 커링 
+    /* function _curry(fn){
+        return function(a,b){
+            if(arguments.length == 2) return fn(a, b);  //인자값 2개가 들어 올때에 대한 처리 추가.jwon
+            return function(b){
+                return fn(a, b);
+            }
+        }
+    }; */
+
+    // 3. 커링2 삼항연산자로 코드 정리. 왼쪽에서 부터 인자 적용
+    function _curry(fn){
+        return function(a,b){
+            return arguments.length == 2 ? fn(a, b) : function(b){ return fn(a, b);    
+            }
+        }
+    };
+
+    function _curryr(fn){
+        return function(a,b){
+            return arguments.length == 2 ? fn(a, b) : function(b){ return fn(b, a);    
+            }
+        }
+    }
+
+    /**
+     * 객체를 안정하게 가져오게 할 수 있도록 처리 할 수 있다.
+     */
+    function _get(obj, key){
+        return obj == null ? undefined : obj[key];  
+    }
+
+    var _get = _curryr(function(obj, key){
+        return obj == null ? undefined : obj[key]; 
+    })
+
+    function add(a, b){
+        return a+b;
+    }
+
+    console.log(add(5,10));
+
+    //처리할 add(더하기) 함수
+    var add = _curry(function(a, b){
+        return a+b;
+    });
+
+    var add10 = add(10);
+    console.log(add10(5));
+
+    console.log(add(5)(3));
+
+    console.log(add(5, 3));
+
+    //처리할 sub(빼기) 함수 
+    var sub = _curryr(function(a, b){
+        return a - b;
+    });
+
+    console.log(sub(10, 5));
+    
+    var sub10 = sub(10);
+    console.log(sub10(5)); //10을 넣고 5를 넣으니 -5가 맞다. 그렇다면 식을 바끄면 되지 않는가??
+
+    var user1 = users[0];
+    console.log(user1.name);
+    console.log(_get(user1, 'name'));
+
+    
+
+
+
+
+
+
     // 1. _curry, _curryr
     //var user1 = users[0];
     //console.log(user1.name);
