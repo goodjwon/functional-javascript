@@ -130,26 +130,8 @@
     }; */
 
     // 3. 커링2 삼항연산자로 코드 정리. 왼쪽에서 부터 인자 적용
-    function _curry(fn){
-        return function(a,b){
-            return arguments.length == 2 ? fn(a, b) : function(b){ return fn(a, b);    
-            }
-        }
-    };
 
-    function _curryr(fn){
-        return function(a,b){
-            return arguments.length == 2 ? fn(a, b) : function(b){ return fn(b, a);    
-            }
-        }
-    }
 
-    /**
-     * 객체를 안정하게 가져오게 할 수 있도록 처리 할 수 있다.
-     */
-    function _get(obj, key){
-        return obj == null ? undefined : obj[key];  
-    }
 
     var _get = _curryr(function(obj, key){
         return obj == null ? undefined : obj[key]; 
@@ -186,12 +168,34 @@
     var user1 = users[0];
     console.log(user1.name);
     console.log(_get(user1, 'name'));
-
     
+    var slice = Array.prototype.slice;
 
+    function _rest(list, num) {
+        return slice.call(list, num || 1);
+        
+    }
+    
+    function _reduce(list, iter, memo) {
 
+        if(arguments.length == 2 ){
+            memo = list[0];
+            list = _rest(list);
+        }
+        _each(list, function (val) {
+            memo = iter(memo, val)
+        });
 
+        return memo;
+    }
 
+    console.log(
+        _reduce([1,2,3,4], add, 0)
+    );
+
+    console.log(
+        _reduce([1,2,3,4], add)
+    )
 
 
     // 1. _curry, _curryr

@@ -22,3 +22,25 @@ function _each(list, iter) {
     }
     return list;
 }
+
+function _curry(fn){
+    return function(a,b){
+        return arguments.length == 2 ? fn(a, b) : function(b){ return fn(a, b);
+        }
+    }
+};
+
+function _curryr(fn){
+    return function(a,b){
+        return arguments.length == 2 ? fn(a, b) : function(b){ return fn(b, a);
+        }
+    }
+}
+
+
+/**
+ * 객체를 안정하게 가져오게 할 수 있도록 처리 할 수 있다.
+ */
+function _get(obj, key){
+    return obj == null ? undefined : obj[key];
+}
