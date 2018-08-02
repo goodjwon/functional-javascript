@@ -251,6 +251,22 @@
         }, console.log
     );
 
+    /** 함수 축약 1**/
+     _go(users, 
+        _filter(function(user){
+            return user.age >= 30
+        }),
+        function(users){
+            return _map(users, _get('name'));
+        },
+         console.log);
+
+    /** 함수 축약 2**/
+    _go(users, 
+        _filter(function(user){ return user.age >= 30}),
+        _map(_get('name')),
+         console.log);
+
     
 
     // 1. _curry, _curryr

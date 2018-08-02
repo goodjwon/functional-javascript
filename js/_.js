@@ -23,6 +23,9 @@ function _each(list, iter) {
     return list;
 }
 
+var _map = _curryr(_map), 
+    _filter = _curryr(_filter);
+
 function _curry(fn){
     return function(a,b){
         return arguments.length == 2 ? fn(a, b) : function(b){ return fn(a, b);
