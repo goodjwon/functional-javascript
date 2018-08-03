@@ -16,12 +16,22 @@ function _map(list, mapper){
     return new_list;
 }
 
+function _get(obj, key){
+    return obj == null ? undefined : obj[key];
+}
+
+
+var _length = _curry(_get('length'));
+
 function _each(list, iter) {
-    for(let i=0; i < list.length ;i++) {
+
+    for (var i=0, len = _length(list); i < len ; i++) {
       iter(list[i]);
     }
+
     return list;
 }
+
 
 var _map = _curryr(_map), 
     _filter = _curryr(_filter);
@@ -44,6 +54,4 @@ function _curryr(fn){
 /**
  * 객체를 안정하게 가져오게 할 수 있도록 처리 할 수 있다.
  */
-function _get(obj, key){
-    return obj == null ? undefined : obj[key];
-}
+
