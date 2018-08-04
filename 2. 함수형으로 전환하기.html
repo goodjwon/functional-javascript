@@ -131,12 +131,6 @@
 
     // 3. 커링2 삼항연산자로 코드 정리. 왼쪽에서 부터 인자 적용
 
-
-
-    var _get = _curryr(function(obj, key){
-        return obj == null ? undefined : obj[key]; 
-    })
-
     function add(a, b){
         return a+b;
     }
@@ -169,25 +163,7 @@
     console.log(user1.name);
     console.log(_get(user1, 'name'));
     
-    var slice = Array.prototype.slice;
 
-    function _rest(list, num) {
-        return slice.call(list, num || 1);
-        
-    }
-    
-    function _reduce(list, iter, memo) {
-
-        if(arguments.length == 2 ){
-            memo = list[0];
-            list = _rest(list);
-        }
-        _each(list, function (val) {
-            memo = iter(memo, val)
-        });
-
-        return memo;
-    }
 
     console.log(
         _reduce([1,2,3,4], add, 0)
@@ -197,25 +173,7 @@
         _reduce([1,2,3,4], add)
     )
 
-    /**
-     * 연속적인 함수의 실행
-     **/
-    function _pipe(){
-        var fns = arguments;
-        return function(arg){
-            return _reduce(fns, function(arg, fn){
-                return fn(arg);
-            }, arg)
-        }
-    }
 
-    /**
-     * 연속적인 함수 바로 실행.
-     */
-    function _go(arg){
-        var fns = _rest(arguments);
-        return _pipe.apply(null, fns)(arg);
-    }
 
     var f1 = _pipe(
         function(a) {return a+1},
@@ -280,15 +238,7 @@
     console.log( _keys([1,2,3,4,5]));
     console.log( _keys(null));
     
-    function _isObject(obj) {
-        return typeof obj == 'object' && !!obj;
-        
-    }
-    
-    function _keys(obj) {
-        return _isObject(obj) ? Object.keys(obj) : [];
-        
-    }
+
 
     
 

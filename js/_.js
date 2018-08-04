@@ -51,7 +51,57 @@ function _curryr(fn){
 }
 
 
-/**
- * 객체를 안정하게 가져오게 할 수 있도록 처리 할 수 있다.
- */
+var _get = _curryr(function(obj, key){
+    return obj == null ? undefined : obj[key];
+})
 
+
+var slice = Array.prototype.slice;
+
+function _rest(list, num) {
+    return slice.call(list, num || 1);
+
+}
+
+function _reduce(list, iter, memo) {
+
+    if(arguments.length == 2 ){
+        memo = list[0];
+        list = _rest(list);
+    }
+    _each(list, function (val) {
+        memo = iter(memo, val)
+    });
+
+    return memo;
+}
+
+/**
+ * 연속적인 함수의 실행
+ **/
+function _pipe(){
+    var fns = arguments;
+    return function(arg){
+        return _reduce(fns, function(arg, fn){
+            return fn(arg);
+        }, arg)
+    }
+}
+
+/**
+ * 연속적인 함수 바로 실행.
+ */
+function _go(arg){
+    var fns = _rest(arguments);
+    return _pipe.apply(null, fns)(arg);
+}
+
+function _isObject(obj) {
+    return typeof obj == 'object' && !!obj;
+
+}
+
+function _keys(obj) {
+    return _isObject(obj) ? Object.keys(obj) : [];
+
+}
