@@ -8,8 +8,16 @@
 </head>
 <body>
     <div class="user-list"></div>
+    <hr>
+    <div class="user-list-2"></div>
+    <hr>
+    <div class="user-list-3"></div>
 
 <script>
+    /**
+     * 동작오류 발생 : 마지막 것만 찍힘.
+     * @type {*[]}
+     */
     var users = [
         {id : 1, name:"HA", age:32},
         {id : 2, name:"JA", age:33},
@@ -30,6 +38,55 @@
     $('.user-list').append(buttons);
 
 </script>
+
+
+<script>
+    /**
+     * 동작오류는 해소 코드는 난잡함.
+     * @type {*[]}
+     */
+    var users = [
+        {id : 1, name:"HA", age:32},
+        {id : 2, name:"JA", age:33},
+        {id : 3, name:"SA", age:43},
+        {id : 4, name:"DA", age:21}
+    ];
+
+     var buttons = [];
+     for(var i=0; i < users.length; i++){
+         (function (user) {
+             buttons.push($('<button>').text(user.name).click(function () {
+                 console.log(user.name);
+             }));
+         })(users[i]);
+     }
+
+    $('.user-list-2').append(buttons);
+</script>
+
+<script>
+    /**
+     * 동작오류 해소 및 코드도 직관적으로 변경 함.
+     * _.map에 대한 사전적 지식 필요함.
+     * @type {*[]}
+     */
+    var users = [
+        {id : 1, name:"HA", age:32},
+        {id : 2, name:"JA", age:33},
+        {id : 3, name:"SA", age:43},
+        {id : 4, name:"DA", age:21}
+    ];
+
+    $('.user-list-3').append(
+        _.map(users, function (user) {
+            return $('<button>').text(user.name).click(function () {
+                console.log(user.name);
+            });
+        }));
+</script>
+
+
+
 
 </body>
 </html>
