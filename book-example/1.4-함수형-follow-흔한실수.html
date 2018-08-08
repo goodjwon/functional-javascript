@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/underscore/underscore-min.js"></script>
+</head>
+<body>
+    <div class="user-list"></div>
+
+<script>
+    var users = [
+        {id : 1, name:"HA", age:32},
+        {id : 2, name:"JA", age:33},
+        {id : 3, name:"SA", age:43},
+        {id : 4, name:"DA", age:21}
+    ];
+
+    var buttons = [];
+
+    for(var i = 0; i < users.length; i++){
+        var user = users[i];
+
+        buttons.push($('<button>').text(user.name).click(function () {
+            console.log(user.name);
+        }));
+    }
+
+    $('.user-list').append(buttons);
+
+</script>
+
+</body>
+</html>
