@@ -54,4 +54,45 @@
 
     var f11 = f9();
     console.log(f11(10));
+
+    function constant(val) {
+        return function () {
+            return val;
+        }
+    }
+
+    var always = constant(10);
+
+    console.log(always());
+    console.log(always(5));
+
+    function callWith(val1) {
+        return function (val2, func) {
+            return func(val1, val2);
+        }
+    }
+
+    function add(a, b) {
+        return a + b;
+    }
+
+    function sub(a, b) {
+        return a - b;
+    }
+
+    var callWith10 = callWith(10);
+    console.log(callWith10(20, add));
+    console.log(callWith10(20, sub));
+
+    //callWith();
+    console.log(callWith(10)(20, add));
+    console.log(callWith(20)(20, sub));
+
+
+
+
+
+
+
+
 </script>
