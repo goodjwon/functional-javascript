@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/underscore/underscore-min.js"></script>
+</head>
+<body>
+    <div class="user-list"></div>
+    <script>
+        var users = [
+            {id : 1, name:"HA", age:32},
+            {id : 2, name:"JA", age:33},
+            {id : 3, name:"SA", age:43},
+            {id : 4, name:"DA", age:21}
+        ];
+
+        $('.user-list').append(
+            _.map(users, function (user) {
+                var button = $('<button>').text(user.name);
+                button.click(function () {
+                    if(confirm(user.name + "님을 팔로우 하시겠습니까?")) follow(user);
+                });
+                return button;
+            })
+        );
+
+        function follow(user) {
+            $.post('/follow', {user_id : user.id}, function () {
+                alert("이제 "+user.name + "님의 소식을 보실 수 있습니다.");
+            });
+        }
+    </script>
+</body>
+</html>
