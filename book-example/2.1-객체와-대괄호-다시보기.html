@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../bower_components/underscore/underscore-min.js"></script>
+</head>
+<body>
+
+
+<script>
+    //##### [코드 2-1] 다양한 key/value 정의 방법
+    var obj = {a:1, "b": 2};
+    obj.c =3;
+    obj['d'] = 4;
+    var e = 'e';
+    obj[e] = 5;
+    function f() { return 'f';  }
+    obj[f()] = 6;
+    console.log(obj);
+</script>
+<script>
+    //##### [코드 2-2] 띄어쓰기, 특수문자, 숫자
+    //띄어쓰기 키로 사용 가능
+    var obj2 = {" a a a":1}
+    obj2[" b b b"]=2;
+    console.log(obj2);
+
+    //특수문자 키 사용 가능
+    var obj3 = {"margin-top":5};
+    obj3["padding-bottom"] = 20;
+    console.log(obj3);
+
+    //숫자도 키로 사용 가능
+    var obj4 = {1:10};
+    obj4[2] = 20;
+    console.log(obj4);
+</script>
+<script>
+    //키를 이렇게 쓰면 에러 발생 Uncaught SyntaxError: Unexpected token
+    //var obj5 = {(true ? "a":"b"):1};
+
+    //코드가 실행되는 key 영역
+    var obj6 = {[false ? "a":"b"]:1};
+    console.log(obj6);
+</script>
+</body>
+</html>
