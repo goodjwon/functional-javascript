@@ -43,6 +43,77 @@
     //코드가 실행되는 key 영역
     var obj6 = {[false ? "a":"b"]:1};
     console.log(obj6);
+
+    obj9.a = 1;
+    obj9.b = 2;
+    console.log(obj9.a + obj9.b);
+    
+    function obj9() {
+    }
+
+    var obj10 = [];
+    obj10.a = 1;
+    obj10.b = 2;
+
+    console.log(obj10);
+    console.log(obj10.length);
+    console.log(typeof obj10.constructor);
+
+    var obj11 = [];
+    obj11[0] = 1;
+    obj11[1] = 2;
+
+    console.log(obj11);
+    console.log(obj11.length);
+    console.log(typeof obj11.constructor);
+
+    var obj12=[];
+    obj12.length = 5;
+
+    console.log(obj12.length);
+    console.log(obj12);
+
+    var obj13=[1,2];
+    obj13[5] = 5;
+    console.log(obj13);
+    // [1, 2, 5: 5]
+    console.log(obj13.length);
+    // 6
+    obj13.push(6);
+    // [1, 2, 5: 5, 6: 6]
+    console.log(obj13);
+
+    var l = 10000;
+    var list = []
+    console.time(list)
+    for (var i =0; i < l; i++){ list.push(i);}
+    console.timeEnd(list);
+    //0.6ms
+
+    var l = 100000;
+    var list = [];
+    console.time(list)
+    for (var i = 0; i < l; i++) { list[list.length] = i; }
+    console.timeEnd(list);
+    //6ms
+
+    var l = 100000;
+    var list = [];
+    list.length = l;
+    console.time(list)
+    for (var i = 0; i < l; i++) { list[i] = i; }
+    console.timeEnd(list);
+    // 3.8ms
+
+    var l = 100000;
+    var list = Array(l);
+    console.time(list)
+    for (var i = 0; i < l; i++) { list[i] = i; }
+    console.timeEnd(list);
+    // 3.4ms
+
+
+
 </script>
 </body>
 </html>
