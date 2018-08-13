@@ -188,5 +188,48 @@
     var add = new Function('a, b', 'return a+b;');
     console.log(add(10, 5));
 </script>
+<script>
+    //###유명함수
+    var f1 = function f(){
+        console.log(f1)
+    };
+
+    console.log('hello');
+
+    var f2 = f1;
+    f1 = 'hi~';
+    f2();
+
+    var hi = 1;
+    var hello = function hi(){
+        console.log(hi);
+    };
+
+    console.log('hello is ')+hello();
+
+    console.log(hi);
+    console.log(++hi);
+
+    hello();
+
+    console.log(hello.name == 'hi');
+    console.log(hello.name === 'hi');
+    console.log(hello.name);
+    console.log(hi);
+
+    var z1 = function z(){
+        console.log(z, 1);
+    }
+
+    var z2 = function z(){
+        console.log(z, 2);
+    }
+    z1();
+    z2();
+    console.log(z1.name = z2.name);
+
+
+
+</script>
 </body>
 </html>
