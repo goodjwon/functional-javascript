@@ -142,10 +142,44 @@
     };
 </script>
 <script>
-    //###즉시실행하기
+    //###함수 즉시실행하기
     (function(a){
         console.log(a)
     })(100);
+
+    !function(a){
+        console.log(a)
+    }(1);
+
+    true && function(a){
+        console.log(a);
+    }(1);
+
+    1?function(a){
+        console.log(a);
+    }(1) : 5;
+
+    0, function(a){
+        console.log(a)
+    }(5);
+
+    var b = function(a){
+        console.log(a);
+    }(1);
+
+    function f2(){}
+    f2(function(a){
+        console.log(a);
+    }(1));
+
+    var f3 = function c(a){
+        console.log(a);
+    }(1);
+
+    new function(){
+        console.log(1);
+    }
+
 </script>
 </body>
 </html>
