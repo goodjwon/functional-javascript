@@ -70,9 +70,60 @@
 
     // 3. 찾아내기 - find
     //   1. find 만들기
+    var _find = _curryr(function _find(list, predi) {
+        var keys = _keys(list);
+        for (var i = 0, len = keys.length; i < len; i++) {
+            var val = list[keys[i]];
+            if(predi(val)) return val;
+        }
+    });
+
+    console.log(
+        _find(users, function (user) {
+            return user.id == 20;
+        })
+    )
+
     //   2. find_index
+    console.log(
+        _find_index(users, function (user) {
+            return user.id == 50;
+        })
+    );
+
+    console.log(
+        _get(_find(users, function (user) {
+            return user.id == 50;
+        }), 'name')
+    );
+
+    _go(users,
+        _find(function (user) { return user.id == 50;}),
+        _get('name'),
+        console.log);
+
     //   3. some
+    console.log(
+    _some([1, 2, 4, 10, 20], function (val) {
+        return val > 10;
+    }));
+
     //   4. every
+    console.log(
+    _every([1, 2, 4, 10, 20], function (val) {
+        return val > 10;
+    }));
+
+    console.log(
+    _every([12, 22, 34, 10, 20], function (val) {
+        return val > 3;
+    }));
+
+    console.log(
+        _some(users, function (user) {
+            return user.age < 1;
+        })
+    );
 
     // 4. 접기 - reduce
 
