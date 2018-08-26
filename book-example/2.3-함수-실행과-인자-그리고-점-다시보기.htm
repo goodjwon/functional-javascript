@@ -1,0 +1,90 @@
+<script>
+    //##함수실행과 인자 다시 보기
+    function test(a, b, c) {
+        console.log("a, b, c :", a, b, c);
+        console.log('this:', this);
+        console.log('arguments:', arguments);
+    }
+
+
+    //##this 다시보기. 2.3.3
+    test(10);
+    console.log("------------------------");
+    test(10, undefined, undefined);
+    console.log("------------------------");
+    test(10,20,30);
+
+    //###인자와 변수의 차이
+    function test2(a, b) {
+        b =10;
+        console.log(arguments);
+    }
+
+    test2(10);
+    test2(10,20);
+
+    var obj1 = {
+        0:1,
+        1:2
+    };
+
+    console.log(obj1);
+
+    var o1 = {name : "obj1"}
+    o1.test = test;
+    o1.test(3,2,1);
+
+    var a1 = [1, 2, 3];
+    a1.test = test;
+    a1.test(3,2,1);
+
+    //test call 다시보기
+    console.log('---------------------20180827------------------');
+    test.call(undefined, 1, 2, 3);
+    test.call(null, 1, 2, 3);
+    test.call(void 0, 1, 2, 3);
+
+    test.call(o1, 3, 2, 1);
+    test.call(1000, 3, 2, 1);
+
+    //applay
+    test.apply(o1, [3, 2, 1]);
+    // a b c: 3 2 1
+    // this: Object {name: "obj1"}
+    // arguments: [3, 2, 1]
+    test.apply(1000, [3, 2, 1]);
+    // a b c: 3 2 1
+    // this: Number 1000
+    // arguments: [3, 2, 1]
+    o1.test.apply(undefined, [3, 2, 1]);
+    // a b c: 3 2 1
+    // this: Window {...}
+    // arguments: [3, 2, 1]
+    o1.test.apply([50], [3, 2, 1]);
+    // a b c: 3 2 1
+    // this: Array [50]
+    // arguments: [3, 2, 1]
+
+    var slice = Array.prototype.slice;
+
+    function toArray(data) {
+        return slice.call(data);
+    }
+
+    function rest(data, n) {
+        return slice.call(data, n || 1);
+    }
+
+    var arr1 = toArray({ 0: 1, 1: 2, length: 2 });
+    //[1,2]
+    arr1.push(3);
+    //[1,2,3]
+    console.log(arr1);
+
+    rest([1,2,3]);
+    //[2,3]
+    rest([1,2,3],2);
+    //[3]
+
+
+</script>
