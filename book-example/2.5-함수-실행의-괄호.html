@@ -23,6 +23,30 @@
     }
 
 
+    add(10, 15, function (a) {
+       sub(a, 5, function (a) {
+           div(a, 10, function (r) {
+               console.log(r)
+           })
+       })
+    });
+
+</script>
+<script>
+    function wrap(func) {
+        return function () {
+            return func.apply(null, arguments);
+        }
+    }
+
+    var add = wrap(function add(a, b, callback) {
+        setTimeout(function () {
+            callback(a + b)}, 1000)
+    });
+
+    add(5, 10, function (r) {
+        console.log(r)
+    })
 </script>
 
 
