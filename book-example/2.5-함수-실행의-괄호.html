@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.5-함수-실행의-괄호</title>
+</head>
+
+<script>
+
+    function add(a, b, callback) {
+        setTimeout(function () {
+                callback(a + b)}, 1000)
+    }
+
+    function sub(a, b, callback) {
+        setTimeout(function () {
+            callback(a-b)}, 1000)
+    }
+
+    function div(a, b, callback) {
+        setTimeout(function () {
+            callback(a/b)}, 1000)
+    }
+
+
+</script>
+
+
+<body>
+
+</body>
+</html>
