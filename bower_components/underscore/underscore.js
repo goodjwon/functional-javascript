@@ -150,7 +150,7 @@
 
   var has = function(obj, path) {
     return obj != null && hasOwnProperty.call(obj, path);
-  }
+  };
 
   var deepGet = function(obj, path) {
     var length = path.length;

@@ -76,9 +76,9 @@
     //     return new_list
     // }
 
-    console.log('use _filter')
+    console.log('use _filter');
 
-    var over_30 = _filter(users, function (user) { return user.age >= 30})
+    var over_30 = _filter(users, function (user) { return user.age >= 30});
     var under_30 = _filter(users, function (user) { return user.age < 30});
     console.log(over_30);
     console.log(under_30);
@@ -90,7 +90,7 @@
         _filter([1,2,3,4,5,6,7,8], function (num) { return !(num % 2)})
     );
 
-    console.log('use _map')
+    console.log('use _map');
     var names = _map(over_30, function (user) { return user.name; });
     console.log(names);
 
@@ -103,7 +103,7 @@
      * 1. 대입문을 줄이면 코드가 간결해 지고
      * 2. 중간에 값이 변할 수 있는 가능성이 적어 지기 때문에 최종적으로 아래 방법을 선호 한다.
      */
-    console.log('use _map, no var')
+    console.log('use _map, no var');
     console.log(
     _map(
         _filter(users, function (user) { return user.age < 30}),
@@ -171,7 +171,7 @@
 
     console.log(
         _reduce([1,2,3,4], add)
-    )
+    );
 
 
 
