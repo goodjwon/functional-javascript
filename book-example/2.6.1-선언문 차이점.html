@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        let i = 0;
+        const b = 'A';
+        {   //block scope
+            let i = 1;          // none exception
+            const b ='A-1';     // none exception
+        }
+    </script>
+    <script>
+        let i = 1;  //Uncaught SyntaxError: Identifier 'i' has already been declared
+        const b = 'B';  // Uncaught SyntaxError: Identifier 'b' has already been declared
+    </script>
+</head>
+<body>
+
+</body>
+</html>
