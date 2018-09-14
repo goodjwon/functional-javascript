@@ -43,6 +43,7 @@
             return false;
         });
         console.log(result);
+        console.log(list);
 
         /*
             reject 참인 것 뺀 나머지 모두.
@@ -57,6 +58,70 @@
         /*
             인자 값이 배열인지 확인
          */
+
+
+        // _.pluck, _.first, _.last, _.rest, _.lastIndexOf
+        var users = [
+            { id: 1, name: "ID", age: 32 },
+            { id: 2, name: "HA", age: 25 },
+            { id: 3, name: "BJ", age: 32 },
+            { id: 4, name: "PJ", age: 28 },
+            { id: 5, name: "JE", age: 27 },
+            { id: 6, name: "JM", age: 32 },
+            { id: 7, name: "HI", age: 24 }
+        ];
+
+        var result = _.pluck(users, 'name');
+        console.log(result);
+
+        var result = _.first([6,1,2,3,4,5]);
+        console.log(result);
+
+        var result = _.first([6,1,2,3,4,5], 2);
+        console.log(result);
+
+        var result = _.last([5, 4, 3, 2, 1]);
+        console.log(result);
+
+        var result = _.last([5, 4, 3, 2, 1], 1);
+        console.log(result);
+
+        var result = _.last([5, 4, 3, 2, 1], 2);
+        console.log(result); // [2, 1]
+
+
+        //rest, initial
+        var result =  _.rest([5, 4, 3, 2, 1]);
+        console.log(result); // [4, 3, 2, 1], 앞열 부터 자르기 rest : 나머지.. 뒤로 살리고
+
+        var result =  _.rest([5, 4, 3, 2, 1], 2);
+        console.log(result); // [3, 2, 1]
+
+        var result =_.initial([5, 4, 3, 2, 1]);
+        console.log(result); // [5, 4, 3, 2]  뒷열 부터 자르기 initial : 처음에.. 앞으로 살리고
+
+        var result = _.initial([5, 4, 3, 2, 1], 2);
+        console.log(result); // [5, 4, 3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
