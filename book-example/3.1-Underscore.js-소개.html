@@ -6,13 +6,35 @@
     <script src="../bower_components/underscore/underscore-min.js"></script>
     <script>
 
-        _.each([1,2,3], function (val, idx, list) {
+        _.each([1,2,3], function (val, idx, list) { //value, index, array
             console.log(val, idx, list);
         });
 
         _.each([1,2,3], function (val, idx) {
             console.log(val, idx);
         });
+
+
+        var a = [1, 2, 3].forEach(function(val, idx, list) { console.log(val, idx, list); });
+        console.log(a);
+        // 1 0 list
+        // 2 1 list
+        // 3 2 list
+        // undefined
+
+        var a = _.each({a:1, b:2}, function (val, idx, list) {
+            console.log(val, idx, list);
+        });
+        console.log(a);
+
+        /*
+            forEach vs _.each
+            return value is different
+
+         */
+
+
+
 
 
     </script>
