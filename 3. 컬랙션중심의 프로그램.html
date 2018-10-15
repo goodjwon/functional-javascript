@@ -127,6 +127,71 @@
 
     // 4. 접기 - reduce
 
+    // min, max, min_by, max_by
+    function _min(data){
+        return _reduce(data, (a, b)=> {
+            return a < b ? a : b;
+        })
+    }
+
+    function _max(data) {
+        return _reduce(data, (a, b)=>{
+            return a > b ? a:b;
+        })
+
+    }
+
+    function _min_by(data, iter) {
+        return _reduce(data, (a, b)=> {
+            return iter(a) < iter(b) ? a : b;
+        })
+    }
+
+    function _max_by(data, iter) {
+        return _reduce(data, (a, b)=>{
+            return iter(a) > iter(b) ? a : b;
+        });
+    }
+
+    var minResult = _min([1,2,3,46,-1]);
+    var maxResult = _max([1,2,3,46,-1]);
+    var minByResult = _min_by([4,2,3,46,-1], Math.abs);
+    var maxByResult = _max_by([4,2,3,46,-47], Math.abs);
+
+    console.log(minResult);
+    console.log(maxResult);
+    console.log(minByResult);
+    console.log(maxByResult);
+
+
+    console.log(
+        _min_by(users, function (user) {
+            return user.age;
+        })
+    );
+
+    _go(users,
+        _filter(user => user.age >= 30)),
+        _min_by(_get('age'),
+        console.log);
+
+    _go(users,
+        _reject(user => user.age >= 30)),
+        _min_by(_get('age'),
+            console.log);
+
+
+
+
+
+
+
+
+
+    // group by, push
+    // count by, inc
+
+
 
 
 </script>
