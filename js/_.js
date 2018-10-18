@@ -70,6 +70,7 @@ function _reduce(list, iter, memo) {
     return memo;
 }
 
+
 function _pipe() {
     var fns = arguments;
     return function(arg) {
@@ -78,6 +79,7 @@ function _pipe() {
         }, arg);
     }
 }
+
 
 function _go(arg) {
     var fns = _rest(arguments);
