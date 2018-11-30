@@ -57,7 +57,7 @@
 
     new function(){
         console.log(1);
-    }
+    };
 </script>
 <script>
     //###eval, new Function 작성법
@@ -98,11 +98,11 @@
 
     var z1 = function z(){
         console.log(z, 1);
-    }
+    };
 
     var z2 = function z(){
         console.log(z, 2);
-    }
+    };
     z1();
     z2();
     console.log(z1.name = z2.name);
@@ -124,47 +124,4 @@
     // [1, 2, 3, 4]
     console.log(flatten([1, [[2], [[3], [[4], 5]]]]));
     // [1, 2, 3, 4, 5]
-
-
-    //##함수실행과 인자 다시 보기
-    function test(a, b, c) {
-        console.log("a, b, c :", a, b, c);
-        console.log('this:', this);
-        console.log('arguments:', arguments);
-    }
-
-
-    //##this 다시보기. 2.3.3
-    test(10);
-    console.log("------------------------");
-    test(10, undefined, undefined);
-    console.log("------------------------");
-    test(10,20,30);
-
-    //###인자와 변소의 차이
-    function test2(a, b) {
-        b =10;
-        console.log(arguments);
-    }
-
-    test2(10);
-    test2(10,20);
-
-    var obj1 = {
-        0:1,
-        1:2
-    };
-
-    console.log(obj1);
-
-    var o1 = {name : "obj1"}
-    o1.test = test;
-    o1.test(3,2,1);
-
-    var a1 = [1, 2, 3];
-    a1.test = test;
-    a1.test(3,2,1);
-
-
-
 </script>

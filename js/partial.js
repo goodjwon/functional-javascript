@@ -1389,7 +1389,7 @@
       if (arguments.length == 2) return _(f, _, start, sel);
       if (arguments.length == 1) return _(f, _, start);
       var _arr = sel.split(/\s*->\s*/), last = _arr.length - 1;
-      _set(_arr.length == 1 ? start : _.sel(start, _arr.slice(0, last).join('->')), _arr[last], val)
+      _set(_arr.length == 1 ? start : _.sel(start, _arr.slice(0, last).join('->')), _arr[last], val);
       return start;
     },
     unset: function(start, sel) {
