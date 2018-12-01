@@ -216,28 +216,70 @@
     //  27: [],
     //  ...
     //}
+
+    _go(10,
+        a=> a/2,
+        a=> a+2,
+        console.log
+    )
+
+    function _push(obj, key, val) {
+        (obj[key] = obj[key] || []).push(val);
+        return obj;
+    }
+
+    var _group_by = _curryr(function (data, iter) {
+        return _reduce(data, function (grouped, val) {
+            _push(grouped, iter(val), val);
+            var key = iter(val);
+            return grouped;
+        }, {})
+    })
+
+    _group_by(users, function (user) {
+        return user.age;
+
+    });
+
+    _go(users,
+        _group_by(function (user) {
+            return user.age;
+        }),
+        console.log
+    )
+
     _go(users,
         _group_by(_get('age')),
         console.log);
+
+
+    //10대로 grouping
     _go(users,
         _group_by(function(user) {
             return user.age - user.age % 10;
         }),
         console.log);
+
+    //이니셜로 grouping
     _go(users,
         _group_by(function(user) {
             return user.name[0];
         }),
         console.log);
+
+    //이니셜로 grouping
     _go(users,
         _group_by(_pipe(_get('name'), _head)),
         console.log);
+
     //   3. count_by, inc
     console.log(
         _count_by(users, function(user) {
             return user.age - user.age % 10;
         })
     );
+
+
     _go(users,
         _count_by(function(user) {
             return user.name[0];
@@ -246,16 +288,31 @@
     console.log( _pairs(users[0]) );
 
 
+    //html 로 표시하기
+    _go(users,
+        _filter(function (user) {return user.age < 20;}),
+        _count_by(function (user) {return user.age - user.age % 10;}),
+        _map((count, key) => `<li>${key} 대는 ${count}명 입니다. </li>`),
+        list => '<ul>' + list.join('') + '</ul>',
+        document.write.bind(document)
+    );
 
+    //조립하기 응용
+    var f1 = _pipe(
+        _count_by(function (user) {return user.age - user.age % 10;}),
+        _map((count, key) => `<li>${key} 대는 ${count}명 입니다. </li>`),
+        list => '<ul>' + list.join('') + '</ul>',
+        document.write.bind(document)
+    )
 
+    f1(users);
 
+    var f2 = _pipe(_reject(user => user.age < 20), f1);
 
+    f2(users);
 
-
-    // count by, inc
-
-
-
+    _go(users, _reject(user=>  user.age < 20), f1);
+    _go(users, _filter(user => user.age < 20), f1);
 
 </script>
 
