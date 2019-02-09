@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원목로중 여러명 찾기</title>
+</head>
+<body>
+
+    <script>
+
+        var users =[
+            {id:1, name:"ID", age:32},
+            {id:2, name:"HA", age:25},
+            {id:3, name:"BJ", age:32},
+            {id:4, name:"PJ", age:28},
+            {id:5, name:"JE", age:27},
+            {id:6, name:"JM", age:32},
+            {id:7, name:"HI", age:24}
+        ];
+
+
+        function filter(list, predicate) {
+
+            var newList = [];
+            for (var i =0; i < list.length;  i++){
+                if(predicate(list[i])) newList.push(list[i]);
+            }
+
+            return newList;
+        }
+
+
+        var users_under_30 = filter(users, function (user) { return user.age < 30});
+
+        console.log(users_under_30.length);
+
+        var users_over_30 = filter(users, function (user) { return user.age > 30});
+
+        console.log(users_over_30.length);
+
+    </script>
+</body>
+</html>
