@@ -7,11 +7,11 @@
     <script>
 
         _.each([1,2,3], function (val, idx, list) { //value, index, array
-            console.log(val, idx, list);
+            console.log('each result 1',val, idx, list);
         });
 
         _.each([1,2,3], function (val, idx) {
-            console.log(val, idx);
+            console.log('each result 2', val, idx);
         });
 
 
@@ -23,9 +23,9 @@
         // undefined
 
         var a = _.each({a:1, b:2}, function (val, idx, list) {
-            console.log(val, idx, list);
+            console.log('each result 3', val, idx, list);
         });
-        console.log(a);
+        console.log('each result 4', a);
 
         /*
             forEach vs _.each
@@ -39,11 +39,11 @@
         var result = _.reject(list, function (num) {
             // return num%2 ==> 0; 1, 3, 5
             // return true; ==> []
-            // return num == 2; ==> 1,3,4,5,6
-            return false;
+             return num == 2; //==> 1,3,4,5,6
+            // return false;
         });
-        console.log(result);
-        console.log(list);
+        console.log('reject : ', result);
+        console.log('reject : ', list);
 
         /*
             reject 참인 것 뺀 나머지 모두.
@@ -72,7 +72,7 @@
         ];
 
         var result = _.pluck(users, 'name');
-        console.log(result);
+        console.log('pluck', result);
 
         var result = _.first([6,1,2,3,4,5]);
         console.log(result);
