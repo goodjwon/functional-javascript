@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>//```javascript
+
+
+_.map = function (list, interator) {
+    let new_list = [];
+    for (let i = 0, len = list.length; i < len; i++){
+        new_list.push(interator(list[i], i, list))
+    }
+    return new_list;
+}
+
+_.map([1,2,3], function (v) {
+    return v * this;
+})
+</script>
+</body>
