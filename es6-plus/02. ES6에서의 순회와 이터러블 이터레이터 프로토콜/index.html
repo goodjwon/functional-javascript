@@ -55,3 +55,32 @@
 - 이터러블/이터레이터 프로토콜: 이터러블을 for...of, 전개 연산자 등과 함께 동작하도록한 규약
 
 ### 사용자 정의 이터러블을 통해 알아보기
+<script>
+    log('User iterable------')
+    const iterable = {
+        [Symbol.iterator](){
+            let i = 3;
+            return {
+                next(){
+                    return i ==0?{done:true} : {value:i--, done: false}
+                },
+                [Symbol.iterator](){return this} //Type error 해소.
+            }
+        }}
+
+    let iterator = iterable[Symbol.iterator]();
+    // log(iterator.next());
+    // log(iterator.next());
+    // log(iterator.next());
+    // log(iterator.next());
+
+    for(const a of iterable)log(a); //ok
+    for(const a of iterator)log(a); //Type error
+
+
+    const arr2 = [1,2,3,4]
+    let iter2 = arr2[Symbol.iterator]();
+    for(const b of iter2)log(b);
+
+
+</script>
