@@ -42,7 +42,37 @@
     log(map(p => p.name, products));
     log(map(p => p.price, products));
 
+</script>
+
+# 이터러블 프로토콜을 따른 map의 다형성
+<script>
+    log(document.querySelectorAll('*'));
+
+    log(map(el=>el.nodeName, document.querySelectorAll('*')));
+
+
+    function *gen() {
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+
+    log(map(a=> a*a, gen()));
+
+    let m = new Map();
+    m.set("a", 10);
+    m.set("b", 20);
+
+    let iter = m[Symbol.iterator]();
+    log(iter);
+
+    log(map(([k, a])=>[k, a*2], m));
+    log(map(([k, a])=>k, m));
+    log(map(([k, a])=>a, m));
+    log(new Map(map(([k, a])=>[k, a*2], m)));   //Map의 값을 바꾼 후 Map객체를 재생성 하는 예에
+
 
 </script>
+
 </body>
 </html>
