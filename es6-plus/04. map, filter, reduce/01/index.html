@@ -71,6 +71,37 @@
     log(map(([k, a])=>a, m));
     log(new Map(map(([k, a])=>[k, a*2], m)));   //Map의 값을 바꾼 후 Map객체를 재생성 하는 예에
 
+</script>
+
+# filter
+<script>
+
+
+    let under20000 = [];
+    for(let a of products){
+       if(a.price < 20000) under20000.push(a)
+    };
+    log(...under20000);
+
+    let over20000 = [];
+    for(let a of products){
+        if(a.price > 20000) over20000.push(a)
+    }
+    log(...over20000);
+
+    //make filter
+    const filter = (f, iter)=>{
+        let res = [];
+        for(let a of iter){
+            if(f(a)) res.push(a)
+        };
+       return res;
+    }
+
+    log(...filter(p=>p.price>20000, products));
+    log(...filter(p=>p.price<20000, products));
+
+
 
 </script>
 
