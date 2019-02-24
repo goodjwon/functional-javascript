@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>const log = console.log;</script>
+
+<script>
+    const products = [
+        { name: '반팔티', price: 15000 },
+        { name: '긴팔티', price: 20000 },
+        { name: '핸드폰케이스', price: 15000 },
+        { name: '후드티', price: 30000 },
+        { name: '바지', price: 25000 }
+    ];
+</script>
+
+
+# map
+<script>
+
+    //초기형태
+    let prices = []
+    for(const a of products)prices.push(a.price);
+    log(prices);
+
+    let names = []
+    for(const n of products)names.push(n.name);
+    log(names);
+
+    //map사용
+    const map = (f, irt)=>{
+        let res = []
+        for(const a of irt)res.push(f(a));
+
+        return res;
+    }
+
+    //이름뽑기
+    log(map(p => p.name, products));
+    log(map(p => p.price, products));
+
+
+</script>
+</body>
+</html>
