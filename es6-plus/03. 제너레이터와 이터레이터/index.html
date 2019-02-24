@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>const log = console.log</script>
+</head>
+<body>
+
+# 제너레이터/이터레이터
+- 제너레이터: 이터레이터이자 이터러블을 생성하는 함수
+<script>
+    function *gen() {
+        yield 1;
+        yield 2;
+        if(false) yield 3;
+        yield 4;
+
+        return 100;
+    }
+    let iter = gen();
+    log(iter[Symbol.iterator]() == iter);
+    // log(iter.next());
+    // log(iter.next());
+    // log(iter.next());
+    // log(iter.next());
+    // log(iter.next());
+
+    for(const a of iter)log(a);
+
+</script>
+
+# odds
+<script>
+    log('odds====================')
+    function *infinity(i=0) {
+        while (true) yield i++
+    }
+
+    function *limite(l, iter) {
+        for(const a of iter){    //위와동일 for => for of 로 변경
+            yield a;
+            if(a==l)return;
+        }
+    }
+
+    function *odds(l) {
+        // for(let i=0; i<l; i++){
+        //     if(i%2) yield i;
+        // }
+
+        // for(const a of infinity(1)){    //위와동일 for => for of 로 변경
+        //     if(a%2) yield a;
+        //     if(a==l)return;
+        // }
+
+        for(const a of limite(l, infinity(1))){    //위와동일 for => for of 로 변경 => limite 추가 하여 정리.
+            if(a%2) yield a;
+        }
+    }
+
+    let iter2 = odds(10);
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+
+
+    for(const a of odds(40))log(a); //최종모습으로 정리.
+
+</script>
+
+# for of, 전개 연산자, 구조 분해, 나머지 연산자
+<script>
+    log(...odds(10));
+    log(...odds(20));
+
+    log('Head...Tail===============')
+    const[head, ...tail] = odds(5);
+    log(head)
+    log(tail);
+
+    log('a, b, ...rest==============')
+    const[a,b, ...rest] = odds(10);
+    log(a);
+    log(b);
+    log(rest);
+
+
+</script>
+</body>
+</html>
