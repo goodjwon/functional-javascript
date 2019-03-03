@@ -113,5 +113,51 @@
 
 </script>
 
+
+#reduce : 값을 축약하는 함수..
+<script>
+    const nums = [1,2,3,4,5];
+    //하나의 값으로 만들어 사용.
+
+    let totalNm = 0;
+    for (const n of nums){
+        totalNm = totalNm + n;
+    }
+    log(totalNm)
+
+
+    const reduce = (f, acc, iter) =>{
+        //인자를 2개 처리로 하기 위한 처리.
+        if(!iter){
+            iter = acc [Symbol.iterator]();
+            acc = iter.next().value;
+        }
+
+        for(const a of iter){
+            acc = f(acc, a);
+        }
+        return acc;
+    }
+
+    const add = (a, b) => a + b;
+
+    log(reduce(add, 0, [1,2,3,4,5]))
+
+    const remove = (a, b) => a - b;
+
+    log(reduce(remove, 22, [1,2,3,4,5,6]))
+
+    log(reduce(add, [1,2,3,4,5]));
+
+</script>
+<script>
+
+    log(
+        reduce(
+            (total_price, product)=> total_price + product.price
+            ,0
+            ,products)
+    )
+</script>
 </body>
 </html>
