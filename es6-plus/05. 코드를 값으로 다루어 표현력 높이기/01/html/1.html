@@ -67,5 +67,21 @@
 
 </script>
 
+
+#curry함수적용
+<script>
+    //const curry = f => (a, ..._) => _.length ? f(a, ..._) : (..._) => f(a, ..._); => fx파일로 이동.
+
+
+    go(
+        products,
+        filter(p=> p.price < 20000),
+        map(p => p.price),
+        reduce(add),
+        log
+    )
+
+</script>
+
 </body>
 </html>
