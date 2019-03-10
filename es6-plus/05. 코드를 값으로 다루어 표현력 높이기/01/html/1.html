@@ -33,6 +33,7 @@
 
 
     const go = (...args) => reduce((a, f)=>f(a), args);
+    const pipe = (...fns) => (a) => go(a, ...fns);
 
 
     go(
@@ -42,6 +43,14 @@
         a => a+100,
         log
     );
+
+    const f = pipe(
+        a => a+1,
+        a => a+10,
+        a => a+100
+    )
+
+    log(f(0));
 
 
 
