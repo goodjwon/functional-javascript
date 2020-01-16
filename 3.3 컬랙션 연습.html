@@ -1,0 +1,37 @@
+
+<html>
+    <hea></hea>
+    <bod>
+        <script>
+            const files =  [ { fileName: '149431343568543.JPG',
+                filePath: 'images/2017/05/149431343568543.jpg' },
+                { fileName: '149431344086273.JPG',
+                    filePath: 'images/2017/05/149431344086273.jpg' },
+                { fileName: '149431344606223.JPG',
+                    filePath: 'images/2017/05/149431344606223.jpg' },
+                { fileName: '149431346200286.JPG',
+                    filePath: 'images/2017/05/149431346200286.jpg' },
+                { fileName: '149431347264974.JPG',
+                    filePath: 'images/2017/05/149431347264974.jpg' },
+                { fileName: '149431347836552.JPG',
+                    filePath: 'images/2017/05/149431347836552.jpg' } ]
+
+            console.log(typeof(files))
+
+            let nfiles = []
+
+            files.forEach((file)=>{
+                console.log(file.filePath)
+                let newPath = file.filePath.replace('images', 'http://www.gonji.co.kr/images')
+                console.log(newPath)
+
+                file.filePath = newPath;
+
+                nfiles.push(file)
+            })
+
+            console.log(nfiles)
+
+        </script>
+    </bod>
+</html>
