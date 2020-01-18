@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>비동기3 await</title>
+    <script src="../lib/fx.js"></script>
+    <script>
+        function delay(time) {
+            return new Promise(resolve => setTimeout( ()=>resolve(), time));
+        }
+
+        async function delayIdentity(a) {
+            await delay(500)
+            return a
+        }
+
+        async function f1() {
+            const a = await delayIdentity(10)
+            const b = await delayIdentity(5)
+            return a + b;
+        }
+
+        const pa = f1();
+
+        (async ()=>{
+            log(await  pa)
+            log(await  pa)
+            log(await  pa)
+        })();
+    </script>
+
+
+    <script>
+        async function delayI(a){
+            return new Promise(resole=>setTimeout(()=>resole(a), 100));
+        }
+
+
+        function f2() {
+            const list = [1,2,3,4];
+            const res = list.map(a=>delayI(a*a))
+            log(res)
+        }
+        f2();
+
+        function f3() {
+            const list = [1,2,3,4];
+            const res = map(a=>delayI(a*a), list)
+            log(res)
+        }
+        f3()
+
+    </script>
+
+    ## QnA. 이제 비동기는 async/await로 제어할 수 있는데 왜 파이프라인이 필요한지??
+    ##=> 파이프라인은 함수를 합치기 위한 것. 동기 비동기는 관심 없음.
+    ##=> 두 가지는 생긴 원인이 다름.
+    ##=> 함수의 상태를 (비동기 상태 등) 파이프라인은 상태를 끝가지 가지고 가기 위함.
+    ##=> 함수 5화 6은 같은 결과를 가지고 간다.
+    <script>
+        const list = [1,2,3,4,5,6,7,8]
+        function f5(list) {
+            return go(list,
+                L.map(a=> delayI(a*a)),
+                L.filter(a => delayI(a%2)),
+                L.map(a=> delayI(a+1)),
+                take(3),
+                reduce((a, b)=> delayI(a+b))
+            )
+        }
+        go(f5(list), log)
+
+
+        async function f6(list) {
+            let temp = []
+            for (const a of list) {
+                const b = await delayI(a * a)
+                if( await delayI(b % 2 )){
+                    const c = await delayI(b + 1);
+                    temp.push(c)
+                    if(temp.length == 3) break;
+                }
+            }
+            let res = temp[0], i = 0;
+            while (++i < temp.length) {
+                res = await delayI(res + temp[i])
+            }
+            return res;
+        }
+
+        go(f6(list), log)
+
+    </script>
+
+    ## async/await 와 파이트 라인을 같이 사용하기도 하는가?
+    <script>
+        async function f52(list) {
+            const r1  = await go(list,
+                L.map(a=> delayI(a*a)),
+                L.filter(a => delayI(a%2)),
+                L.map(a=> delayI(a+1)),
+                take(3),
+                reduce((a, b)=> delayI(a+b))
+            )
+
+            const r2  = await go(list,
+                L.map(a=> delayI(a*a)),
+                L.filter(a => delayI(a%2)),
+                L.map(a=> delayI(a+1)),
+                take(3),
+                reduce((a, b)=> delayI(a+b))
+            )
+            return r1 + r2;
+        }
+
+        go(f52(list), a=> log(a, 'f52'))
+
+
+    </script>
+    ##비동기 예외 처리 하기
+    <script>
+        async function f9(list) {
+            try {
+                return await go(
+                    list,
+                    map(a => new Promise(resolve => {
+                        resolve(JSON.parse(a));
+                    })),
+                    filter(a => a % 2),
+                    //take(2)
+                );
+            }catch (e) {
+                log(e, 'error hi~~~')
+                return []
+            }
+        }
+
+        f9(['1','2','3','4','5','6','7','8','{.']).then(a => log(a, 'f9'))
+    </script>
+</head>
+<body>
+
+</body>
+</html>
