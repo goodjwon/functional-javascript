@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const proms = new Promise((resolve, reject) =>{
+            console.log('first ')
+            resolve('first done')
+        });
+
+        proms.then(result => {
+            console.log(result);
+            return new Promise(resolve => {
+                console.log('second')
+                resolve('second done')
+            })
+        }).then(result => {
+            console.log(result);
+            throw 'error All done'
+        }).then(result=>{
+            console.log(result)
+        }).catch(error =>{
+            console.log(error)
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
