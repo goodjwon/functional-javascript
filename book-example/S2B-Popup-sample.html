@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+    <script>
+        const x = document.getElementById("messageBtn");
+        window.addEventListener("message", function (e) {
+            console.log(e.data)
+            console.log(`Received message: ${e.data}`);
+            document.getElementById("message").innerHTML +=  e.data;
+        })
+
+        function openPop() {
+            const url  = 'https://www.s2b.kr/S2BNKEdufine/edufine/mainInfo.jsp';
+            window.open(url, "print1004", "width=1050, height=1000, scrollbars=yes");
+        }
+
+    </script>
+</head>
+
+<body>
+Content of the document......
+    <div id="message"></div>
+    <button id="messageBtn" onclick="openPop()">팝업을열어봐</button>
+</body>
+</html>
