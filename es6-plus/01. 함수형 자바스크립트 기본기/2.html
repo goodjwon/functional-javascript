@@ -57,7 +57,7 @@
     const isWord   = fWord => sWord => fWord === sWord;
 
     const a1 = "핳"
-    const a2 = "용 가자 나라 핳"
+    const a2 = "용 가자 나라"
     const a3 = "가 지 마라 핳"
 
     const arrays=[];
@@ -67,7 +67,11 @@
 
 
     let result = arrays.shift().filter(function(v) {
+        console.log('v : ',v)
         return arrays.every(function(a) {
+            console.log('a :', a)
+            console.log('a is :', a.indexOf(v) !== -1)
+
             return a.indexOf(v) !== -1;
         });
     });
