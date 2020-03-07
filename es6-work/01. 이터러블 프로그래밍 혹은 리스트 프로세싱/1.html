@@ -75,6 +75,18 @@ C : 동시함수
         L.map(join('')),
         join('\n'),
         console.log);
+
+    _.go(
+        L.range(2, 10),
+        L.map(a => _.go(
+            L.range(1, 10),
+            L.map(b=> `${a} x ${b} = ${a*b}`),
+            join('\n'),
+        )),
+        join('\n\n'),
+        console.log
+    )
+
 </script>
 </body>
 </html>
