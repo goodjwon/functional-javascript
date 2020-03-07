@@ -33,9 +33,8 @@
     function f2(limit, list) {
         let acc = 0;
         //위에 것과 대비 해서 for문의 대상을 줄입으로서 성능 향상 을 노릴 수 있다.
-        for (const a of L.map(a=> a*a, L.filter(a=> a % 2, list))){
+        for (const a of C.take(limit, L.map(a=> a*a, L.filter(a=> a % 2, list)))){
             acc += a;
-            if(--limit == 0) break;
         }
         console.log(acc)
     }
