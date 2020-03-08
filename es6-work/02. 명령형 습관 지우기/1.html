@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/fxjs/dist/fx.es5.min.js"></script>
+</head>
+<body>
+
+## 명령형 습관 지우기 - 만능 reduce? No!
+
+1. reduce + 복잡한 함수 + acc 보다 map + 간단한 함수 + reduce
+<script>
+    const users = [
+        {name: 'AA', age: 35},
+        {name: 'BB', age: 26},
+        {name: 'CC', age: 28},
+        {name: 'DD', age: 34},
+        {name: 'EE', age: 23},
+    ];
+
+    /** 복잡한예**/
+    console.log(
+        _.reduce((total, u) => total + u.age, 0, users));
+
+    /** 좋은예
+     * 확장성이 좋음
+     * 함수로 분리가 쉬움
+     * 명명이 쉬음
+     * **/
+    const add = (a, b)=> a + b;
+
+    console.log(
+        _.reduce(add, L.map(u=> u.age, users)));
+
+
+</script>
+
+2. reduce 하나 보다 map + filter + reduce
+3. query, queryToObject
+
+</body>
+</html>
