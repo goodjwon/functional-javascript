@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/fx.js"></script>
+</head>
+<body>
+
+##안전한 합성에 대해
+1. map으로 합성하기
+<script>
+const f = x => x + 10;
+const g = x => x -5;
+const fg = x => f(g(x))
+console.log(fg(10));
+
+_.go(
+    10,
+    fg,
+    console.log
+)
+
+_.go(
+    [10],
+    L.map(fg),
+    _.each(console.log)
+)
+;
+
+_.go(
+    [],
+    L.map(fg),
+    _.each(console.log)
+)
+
+
+</script>
+
+2. find 대신에 L.filter 써 보기
+<script>
+
+</script>
+</body>
+</html>
