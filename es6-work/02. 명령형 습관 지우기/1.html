@@ -37,7 +37,73 @@
 </script>
 
 2. reduce 하나 보다 map + filter + reduce
-3. query, queryToObject
+<script>
+    console.log(
+        _.reduce((total, u) =>  u.age >= 30? total : total + u.age, 0, users));
 
+    console.log(
+        _.reduce(add,
+            L.map(u=> u.age,
+                L.filter(u=> u.age < 30, users))))
+
+</script>
+
+
+
+3. query, queryToObject
+<script>
+    const obj1 = {
+        a: 1,
+        b: undefined,
+        c: 'CC',
+        d: 'DD'
+    };
+    //a=1&c=CC&d=DD
+
+    function query1(obj) {
+        let res = ''
+        for (const k in obj){
+            const v = obj[k];
+            if (v === undefined ) continue;
+            if (res != '') res += '&';
+            res += k + '=' + v;
+        }
+        return res;
+    }
+    console.log(query1(obj1));
+
+    function query2(obj) {
+        return Object
+            .entries(obj)
+            .reduce((query, [k, v], i)=>{
+                if(v === undefined) return query;
+                return `${query}${i > 0? '&':''}${k}=${v}`
+            }, '')
+    }
+
+    console.log(query2(obj1));
+
+    const join = _.curry((sep, iter) =>_.reduce((a, b) => `${a}${sep}${b}`, iter));
+
+    function query3(obj) {
+        return (
+            _.reduce((a, b)=> `${a}&${b}`,
+                _.map(([k, v]) => `${k}=${v}`,
+                    _.reject(([_, v])=> v === undefined ,
+                        Object.entries(obj)))));
+    }
+
+    console.log(query3(obj1))
+
+    const query4 = _.pipe(
+        Object.entries,
+        _.reject(([_, v])=> v === undefined),
+        _.map(join('=')),
+        join('&'));
+
+    console.log(query4(obj1))
+
+
+</script>
 </body>
 </html>
