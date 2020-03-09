@@ -39,6 +39,27 @@ _.go(
 
 2. find 대신에 L.filter 써 보기
 <script>
+    const users = [
+        {name: 'AA', age: 35},
+        {name: 'BB', age: 26},
+        {name: 'CC', age: 28},
+        {name: 'DD', age: 34},
+        {name: 'EE', age: 23},
+    ];
+
+const user =  _.find( u =>u.name == 'BB' ,users);
+if(user) {
+    console.log(user)
+}
+
+_.each(console.log,
+    L.take(1, L.filter(u => u.name =='BB', users)));
+
+_.go(users,
+    L.filter(u => u.name =='BB'),
+    L.take(1),
+    _.each(console.log)
+)
 
 </script>
 </body>
