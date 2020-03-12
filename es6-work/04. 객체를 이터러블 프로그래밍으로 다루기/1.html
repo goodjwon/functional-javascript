@@ -10,6 +10,37 @@
 #
 4.객체를 이터러블 프로그램으로 다루기.
 <script>
+    const it = (function *() {
+        yield 10;
+        yield 20;
+        yield 30;
+    })()
+
+console.log([...it])
+</script>
+
+5. object 함수
+<script>
+    const a = [['a', 1],['b', 2],['c', 3]]
+    const b = {a: 1, b:2, c: 3}
+
+    const object = entries => _.go(
+        entries,
+        L.map(([k,v])=>({[k]: v})),
+        _.reduce(Object.assign));
+
+    console.log(object(a))
+
+    const object2 = entries => _.reduce((obj, [k, v])=>(obj[k] =  v, obj, {}, entries));
+
+    console.log(object(L.entries(({b: 2, c: 3}))))
+
+    let m = new Map();
+    m.set('a', 10);
+    m.set('b', 20);
+    m.set('c', 30);
+
+    console.log(object2(m))
 
 </script>
 </body>
