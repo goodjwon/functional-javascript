@@ -41,7 +41,22 @@ console.log([...it])
     m.set('c', 30);
 
     console.log(object2(m))
-
 </script>
+
+6. mapObject
+<script>
+    const mapObject = (f, obj)=> _.go(
+        obj,
+        L.entries,
+        _.map(([k, v])=>[k, f(v)]),
+        object
+    );
+    console.log(mapObject(a => a + 10, {a: 1, b: 2, c: 3}));
+    //[['a', 1], ['b', 2], ['c', 3]]
+    //[['a', 11], ['b', 12], ['c', 13]]
+    //{a: 11}..
+    //{a: 11, b, 12, c, 13}
+</script>
+
 </body>
 </html>
