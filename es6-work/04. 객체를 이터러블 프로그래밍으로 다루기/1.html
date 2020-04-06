@@ -58,5 +58,19 @@ console.log([...it])
     //{a: 11, b, 12, c, 13}
 </script>
 
+7.pick
+<script>
+    const obj2 = {a: 1, b: 2, c: 3, d: 4, e: 5 };
+
+    const pick = (ks, obj)=> _.go(
+        ks,
+        _.map(k=> [k, obj[k]]),
+        _.reject(([k, v])=> v === undefined),
+        object
+    ) ;
+    console.log(pick(['b', 'c', 'z'], obj2))
+    //{b: 2, c: 3}
+</script>
+
 </body>
 </html>
