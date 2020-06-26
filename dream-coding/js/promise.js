@@ -48,7 +48,8 @@ const getHen = () =>
 
 const getEgg = hen =>  //hen을 받아와서
     new Promise((resolve, reject) => {
-        setTimeout(() => resolve(`${hen} => 🥚`), 1000)
+        // setTimeout(() => resolve(`${hen} => 🥚`), 1000)
+        setTimeout(()=>reject(new Error(`error ! ${hen} => 🥚`), 1000))
     });
 
 const cook = egg =>  //egg를 받아와서..
@@ -56,7 +57,20 @@ const cook = egg =>  //egg를 받아와서..
         setTimeout(() => resolve(`${egg} => 🍳`), 1000)
     });
 
+//call
 getHen()
     .then(hen => getEgg(hen))
+    .catch(error=>{
+        return "🥖"
+    })
     .then(egg => cook(egg))
     .then(meal => console.log(meal))
+
+//인자가 할게 일때 축약.
+getHen()
+    .then(getEgg)
+    .catch(error => {
+        return "🥖";
+    })
+    .then(cook)
+    .then(console.log)
