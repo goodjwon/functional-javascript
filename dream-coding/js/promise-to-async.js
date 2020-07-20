@@ -24,6 +24,12 @@ class UserStorage {
     async dealay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms))
     }
+
+    async getUserWithRole(user, password) {
+        const login = await this.loginUser(user, password);
+        const role = await this.getRoles(login);
+        return role;
+    }
 }
 
 
@@ -37,9 +43,7 @@ const userStorage = new UserStorage();
 const id = prompt('enter your id');
 const password = prompt('enter your password');
 
-userStorage.dealay(1000).loginUser(id, password)
+userStorage
+    .getUserWithRole(id, password) //
     .catch(console.log)
-    .then(userStorage.getRoles)
-    .then(user => alert(`Hello ${user.name}, you have a ${user.role}`))
-    .catch(console.log)
-
+    .then(user => alert(`Hello ${user.name}, you have a ${user.role}`));
