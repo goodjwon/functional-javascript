@@ -41,5 +41,5 @@ const promise4 = new Promise((resolve, reject)=>{
 })
 
 Promise.all([promise3, promise4]).then(results =>{
-    console.log(results);
+    console.log('Promise All ',results);
 })
